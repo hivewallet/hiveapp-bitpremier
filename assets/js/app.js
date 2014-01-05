@@ -34,6 +34,7 @@ function getCategories() {
         currentView.totalItems = 0;
         $('#listings').empty();
         getListings();
+        $('.category-name').text($(this).text());
         $('.navbar-toggle').click();
       });
 

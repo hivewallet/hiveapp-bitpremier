@@ -35,7 +35,7 @@
     <div class="listing-panel">
       <ul id="listings" class="list-unstyled">
       </ul>
-      <p id="loading-indicator"><i class="fa fa-spinner fa-spin"></i> Loading items&hellip;</p>
+      <p id="loading-indicator"><i class="fa fa-spinner fa-spin"></i> Loading <span class="category-name">items</span>&hellip;</p>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
     var BP = {
       onReady: function() {
         getCategories();
-        getListings( function(){$('#loading-indicator').hide();} );
+        getListings();
         $('#button_refreshall').click( function(){location.reload(false);} );
         $(window).scroll(scrollLoad);
         $('#scrollLoad').click(scrollLoad);
