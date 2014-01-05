@@ -1,0 +1,15 @@
+/*
+  Overwrite default styles inherited from bootstrap-theme.min.css here
+*/
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.main_picture {
+  
+}
+
+.listing {
+	margin-top: 1em;
+}

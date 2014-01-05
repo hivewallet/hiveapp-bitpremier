@@ -1,0 +1,9 @@
+{
+  "name": "BitPremier",
+  "id": "bitpremier",
+  "version": "0.1",
+  "author": "Taylor Gerring",
+  "description": "Hive BitPremier app",
+  "icon": "img/logo.png",
+  "accessedHosts": ["www.bitpremier.com"]
+}
