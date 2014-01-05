@@ -11,7 +11,7 @@ function scrollLoad() {
   if ( currentView.totalItems > (currentView.previousOffset + currentView.pagingAmount) )
   {
     if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
-      if (!$('#listings').hasClass(currentview.loadingClass)) {
+      if (!$('#listings').hasClass(currentView.loadingClass)) {
         getListings();
       }
     }
