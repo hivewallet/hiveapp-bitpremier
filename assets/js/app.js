@@ -54,10 +54,12 @@ function getListings(callback) {
 
   $('#listings').addClass(currentView.loadingClass);
   $('#loading-indicator').show();
-
+  $('#user-message').hide();
+//window.setTimeout(function(){
   bitpremier.submitRequest(bitpremier.resource.listing, params, function (response){
     if ('data' in response) {
       currentView.totalItems = response.data.meta.total_count;
+      $('.total-items').text(currentView.totalItems);
       var i = 0
       for (; i < response.data.objects.length; i++) {
         var item = response.data.objects[i];
@@ -67,10 +69,12 @@ function getListings(callback) {
       currentView.previousOffset += i;
 
       $('#listings').removeClass(currentView.loadingClass);
+      $('#user-message').show();
       $('#loading-indicator').hide();
       if (typeof callback === "function") callback();
     }
   });
+//}, 3000);
 }
 
 function getListingDetails(listingId) {
