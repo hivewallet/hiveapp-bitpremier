@@ -2,7 +2,7 @@
 
 A Hive Wallet app for interacting with the [BitPremier API](http://www.bitpremier.com/api/doc/).
 
-[BitPremier Autos](http://i.imgur.com/zw9WUeg.png)
+![BitPremier Autos](http://i.imgur.com/zw9WUeg.png)
 
 ## Developers
 ```
