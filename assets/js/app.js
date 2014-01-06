@@ -19,10 +19,15 @@ function scrollLoad() {
 }
 
 function getCategories() {
-  bitpremier.submitRequest(bitpremier.resource.category, function (response){
+  bitpremier.submitRequest(bitpremier.resource.category, {'order_by': 'name'}, function (response){
     if ('data' in response) {
-      for (var i = 0; i < response.data.objects.length; i++) {
-        var item = response.data.objects[i];
+      var items = response.data.objects.sort(function(a, b){
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
+        return 0;
+      });
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
         var text = '<li><a href="#" class="category-link" value="'+item.id+'">'+item.name+'</a></li>';
         $('#categories').append(text);
       };
