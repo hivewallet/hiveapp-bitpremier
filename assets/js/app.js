@@ -1,4 +1,4 @@
-var bitpremier = new BitPremier('api_key_here');
+var bitpremier = new BitPremier(); // Supply auth credentials as first string param
 currentView = {
   pagingAmount: 20,
   previousOffset: 0,
@@ -6,6 +6,15 @@ currentView = {
   categoryId: null,
   loadingClass: 'loading'
 }
+
+/*
+// A replacement function if CORS is not enabled
+bitpremier.requestFunction = function(xhrParams) {
+  var url = xhrParams.url;
+  delete xhrParams.url;
+  bitcoin.makeRequest(url, xhrParams);
+}
+*/
 
 function scrollLoad() {
   if ( currentView.totalItems > (currentView.previousOffset + currentView.pagingAmount) )

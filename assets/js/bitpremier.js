@@ -1,14 +1,16 @@
 BitPremier = function(api_key) {
   this.auth = {api_key: api_key};
-  this.host = 'http://www.bitpremier.com/api/v1';
+  this.host = 'https://www.bitpremier.com/api/v1';
   this.resource = {
     category: {
         endpoint: '/category/',
-        method: 'GET'
+        method: 'GET',
+        auth: false
     },
     listing: {
         endpoint: '/listing/',
-        method: 'GET'
+        method: 'GET',
+        auth: false
     }
   }
 }
@@ -22,17 +24,21 @@ BitPremier.prototype.submitRequest = function(resource, params, callback) {
   console.log('Submitting request to ' + resource.endpoint + ' with params:');
   console.log(params)
 
-  var that = this;
-  this.requestFunction({
+  var that = this; // To pass object into callbacks below
+  var xhrParams = {
     type: resource.method,
-    url: that.host + resource.endpoint,
+    url: this.host + resource.endpoint,
     data: params,
     success: function(data, textStatus, jqXHR){that.parseResponse(data, callback);},
     error: function(jqXHR, textStatus, errorThrown){that.handleError(textStatus, errorThrown, callback);},
     timeout: 15000,
-    dataType: 'json',
-    headers: {'Authorization': that.auth.api_key}
-  });
+    dataType: 'json'
+  }
+  // Check if this resource requires authorization and we have some to supply
+  if (resource.auth && this.auth.api_key)
+    xhrParams.headers = {'Authorization': this.auth.api_key};
+
+  this.requestFunction(xhrParams);
 }
 
 BitPremier.prototype.requestFunction = function(xhrParams) {  
@@ -41,7 +47,7 @@ BitPremier.prototype.requestFunction = function(xhrParams) {
 
 BitPremier.prototype.handleError = function(textStatus, errorThrown, callback) {
   console.log('Error returned');
-  console.log(errorThrown);
+  console.log(textStatus, errorThrown);
 
   var data = {};
   data.error = 'Error with request: ' + errorThrown;
