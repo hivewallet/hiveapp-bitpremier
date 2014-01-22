@@ -1,6 +1,6 @@
 {
   "name": "BitPremier",
-  "id": "bitpremier",
+  "id": "com.hivewallet.bitpremier",
   "version": "1.0",
   "author": "Taylor Gerring",
   "description": "Hive BitPremier app",
