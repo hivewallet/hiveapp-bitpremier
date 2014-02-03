@@ -1,14 +1,19 @@
 BitPremier = function(api_key) {
   this.auth = {api_key: api_key};
-  this.host = 'https://www.bitpremier.com/api/v1';
+  this.host = 'https://www.bitpremier.com/api';
   this.resource = {
     category: {
-        endpoint: '/category/',
+        endpoint: '/v1/category/',
         method: 'GET',
         auth: false
     },
     listing: {
-        endpoint: '/listing/',
+        endpoint: '/v1/listing/',
+        method: 'GET',
+        auth: false
+    },
+    ticker: {
+        endpoint: '/ticker',
         method: 'GET',
         auth: false
     }
@@ -22,7 +27,6 @@ BitPremier.prototype.submitRequest = function(resource, params, callback) {
   }
 
   console.log('Submitting request to ' + resource.endpoint + ' with params:');
-  console.log(params)
 
   var that = this; // To pass object into callbacks below
   var xhrParams = {
