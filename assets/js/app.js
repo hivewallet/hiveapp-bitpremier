@@ -72,8 +72,7 @@ function getListings(callback) {
       var i = 0
       for (; i < response.data.objects.length; i++) {
         var item = response.data.objects[i];
-        var text = '<li class="listing"><a target="_blank" href="http://www.bitpremier.com/items/view/' + item.id + '"><img class="main_picture img-thumbnail" src="'+item.main_picture+'"><div class="clearfix"></div>' + item.title + '</a> <br> <i class="fa fa-btc fa-fw"></i>' + item.btc_price + '<div id="description-'+item.id+'"></div></li>';
-        $('#listings').append(text);
+        $('#listings').append(itemHtml(item));
       };
       currentView.previousOffset += i;
 
@@ -84,6 +83,22 @@ function getListings(callback) {
     }
   });
 //}, 3000);
+}
+
+function itemHtml(item) {
+  console.log(item);
+  return [
+    '<li class="listing">',
+    '<a target="_blank" href="http://www.bitpremier.com/items/view/' + item.id + '">',
+    '<img class="main_picture img-thumbnail" src="'+item.main_picture+'">',
+    '<div class="clearfix"></div>',
+    item.title,
+    '</a>',
+    '<br> <i class="fa fa-btc fa-fw"></i>'
+    item.btc_price,
+    '<div id="description-'+item.id+'"></div>',
+    '</li>'
+  ].join('');
 }
 
 function getListingDetails(listingId) {
