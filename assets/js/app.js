@@ -1,6 +1,4 @@
 var bitpremier = new BitPremier(); // Supply auth credentials as first string param
-refreshTicker()
-setInterval(refreshTicker, 15 * 1000)
 
 currentView = {
   pagingAmount: 20,
@@ -89,47 +87,18 @@ function getListings(callback) {
 }
 
 function itemHtml(item) {
-  var price = getPrice(item)
-  var currency = getCurrency(item)
   return [
-    '<li class="listing" data-id="' + item.id + '" data-currency="' + currency + '" data-price="' + price + '">',
+    '<li class="listing">',
     '<a target="_blank" href="http://www.bitpremier.com/items/view/' + item.id + '">',
     '<img class="main_picture img-thumbnail" src="'+item.main_picture+'">',
     '<div class="clearfix"></div>',
     item.title,
     '</a>',
     '<br> <i class="fa fa-btc fa-fw"></i>',
-    '<span class="btc_price">' + getBTCPrice(currency, price) + "<span>",
+    item.btc_price,
     '<div id="description-'+item.id+'"></div>',
     '</li>'
   ].join('');
-}
-
-function getCurrency(item) {
-  return (item.eur_price) ? 'eur_btc' : 'usd_btc'
-}
-
-function getPrice(item) {
-  return (item.eur_price) ? item.eur_price : item.price
-}
-
-function getBTCPrice(currency, price) {
-  if(bitpremier.ticker === undefined) return;
-  if(price === undefined || currency === undefined) return;
-
-  return parseFloat(price) / bitpremier.ticker[currency]
-}
-
-function refreshTicker() {
-  bitpremier.submitRequest(bitpremier.resource.ticker, function (response){
-    bitpremier.ticker = response.data
-
-    var items = [].slice.call(document.querySelectorAll('li.listing'))
-    items.forEach(function(item){
-      var btcPrice = getBTCPrice(item.dataset['currency'], item.dataset['price'])
-      item.querySelector('.btc_price').textContent = btcPrice
-    })
-  })
 }
 
 function getListingDetails(listingId) {
