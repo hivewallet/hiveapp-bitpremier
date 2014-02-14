@@ -42,7 +42,12 @@ BitPremier.prototype.submitRequest = function(resource, params, callback) {
     xhrParams.headers = {'Authorization': this.auth.api_key};
 
   var url = this.host + resource.endpoint;
-  bitcoin.makeRequest(url, xhrParams);
+  this.requestFunction(url, xhrParams);
+}
+
+BitPremier.prototype.makeRequest = function(url, xhrParams) {
+  xhrParams.url = url;
+  $.ajax(xhrParams);
 }
 
 BitPremier.prototype.handleError = function(textStatus, errorThrown, callback) {

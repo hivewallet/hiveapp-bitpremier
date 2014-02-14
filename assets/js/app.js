@@ -1,4 +1,5 @@
 var bitpremier = new BitPremier(); // Supply auth credentials as first string param
+bitpremier.requestFunction = function(url, options) { bitcoin.makeRequest(url, options) }
 
 currentView = {
   pagingAmount: 20,
