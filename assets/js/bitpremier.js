@@ -31,7 +31,6 @@ BitPremier.prototype.submitRequest = function(resource, params, callback) {
   var that = this; // To pass object into callbacks below
   var xhrParams = {
     type: resource.method,
-    url: this.host + resource.endpoint,
     data: params,
     success: function(data, textStatus, jqXHR){that.parseResponse(data, callback);},
     error: function(jqXHR, textStatus, errorThrown){that.handleError(textStatus, errorThrown, callback);},
@@ -42,11 +41,8 @@ BitPremier.prototype.submitRequest = function(resource, params, callback) {
   if (resource.auth && this.auth.api_key)
     xhrParams.headers = {'Authorization': this.auth.api_key};
 
-  this.requestFunction(xhrParams);
-}
-
-BitPremier.prototype.requestFunction = function(xhrParams) {  
-  $.ajax(xhrParams);
+  var url = this.host + resource.endpoint;
+  bitcoin.makeRequest(url, xhrParams);
 }
 
 BitPremier.prototype.handleError = function(textStatus, errorThrown, callback) {

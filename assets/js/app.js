@@ -8,15 +8,6 @@ currentView = {
   loadingClass: 'loading'
 }
 
-/*
-// A replacement function if CORS is not enabled
-bitpremier.requestFunction = function(xhrParams) {
-  var url = xhrParams.url;
-  delete xhrParams.url;
-  bitcoin.makeRequest(url, xhrParams);
-}
-*/
-
 function scrollLoad() {
   if ( currentView.totalItems > (currentView.previousOffset + currentView.pagingAmount) )
   {
