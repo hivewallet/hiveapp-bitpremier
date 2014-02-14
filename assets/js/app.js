@@ -1,3 +1,6 @@
+var systemInfo = {};
+bitcoin.getSystemInfo(function(info) { systemInfo = info });
+
 var bitpremier = new BitPremier(); // Supply auth credentials as first string param
 bitpremier.requestFunction = function(url, options) { bitcoin.makeRequest(url, options) }
 
@@ -86,11 +89,13 @@ function itemHtml(item) {
     '<div class="clearfix"></div>',
     item.title,
     '</a>',
-    '<br> <i class="fa fa-btc fa-fw"></i>',
-    item.btc_price,
+    '<br>',
+    systemInfo.preferredBitcoinFormat,
+    bitcoin.userStringForSatoshi(bitcoin.BTC_IN_SATOSHI * item.btc_price),
+    // item.btc_price,
     '<div id="description-'+item.id+'"></div>',
     '</li>'
-  ].join('');
+  ].join(' ');
 }
 
 function getListingDetails(listingId) {
