@@ -45,7 +45,7 @@ BitPremier.prototype.submitRequest = function(resource, params, callback) {
   this.requestFunction(url, xhrParams);
 }
 
-BitPremier.prototype.makeRequest = function(url, xhrParams) {
+BitPremier.prototype.requestFunction = function(url, xhrParams) {
   xhrParams.url = url;
   $.ajax(xhrParams);
 }
