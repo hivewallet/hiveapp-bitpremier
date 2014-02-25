@@ -3,7 +3,7 @@
   "id": "com.hivewallet.bitpremier",
   "version": "1.1.0",
   "author": "Taylor Gerring",
-  "description": "Hive BitPremier app",
+  "description": "Buy luxury goods with Bitcoin",
   "icon": "img/logo.png",
   "accessedHosts": ["www.bitpremier.com"]
 }
